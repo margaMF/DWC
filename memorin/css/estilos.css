@@ -1,0 +1,17 @@
+table{
+    text-align: center;
+    margin: auto;
+    margin: 10%;
+}
+
+table, tr, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+td {
+    width: 80px;
+    height:  80px;
+    text-align: center;
+}
