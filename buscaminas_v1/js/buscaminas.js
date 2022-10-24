@@ -89,3 +89,4 @@ function AppFuncionando() {
     }
     
     AppFuncionando();
+    console.log(crearArrayTablero);
