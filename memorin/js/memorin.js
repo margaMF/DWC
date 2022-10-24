@@ -6,6 +6,7 @@ function App() {
     
     totalCasillas = maxFilas * maxColumnas;
 
+    tableroMemorin = crearTablero(maxFilas, maxColumnas);
     
     if ((totalCasillas % 2) != 0) {
         let esPar = false;
@@ -26,6 +27,20 @@ function App() {
         
     } 
 
+}
+
+function crearTablero(maxFilas, maxColumnas){
+    let arrayTablero = [];
+
+    for (let fila = 0; fila < maxFilas; fila++){
+        arrayTablero[fila] = new Array(maxColumnas);
+
+        for (let columna = 0; columna < maxColumnas; columna++){
+            arrayTablero[fila][columna] = '';
+        }
+    }
+
+    return arrayTablero
 
 }
 
