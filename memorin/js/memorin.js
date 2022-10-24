@@ -5,16 +5,14 @@ function App() {
     let maxColumnas = prompt('¿Cuantas columnas quieres?');
     
     totalCasillas = maxFilas * maxColumnas;
-
-    tableroMemorin = crearTablero(maxFilas, maxColumnas);
     
     if ((totalCasillas % 2) != 0) {
         let esPar = false;
         
             while(esPar == false){
                 
-                let maxFilas = prompt('¡¡¡ERROR!!! La cantidad de filas y columnas debe ser un número par ¿Cuántas filas quieres?');
-                let maxColumnas = prompt('¿Cuantas columnas quieres?');
+                maxFilas = prompt('¡¡¡ERROR!!! La cantidad de filas y columnas debe ser un número par ¿Cuántas filas quieres?');
+                maxColumnas = prompt('¿Cuantas columnas quieres?');
 
                 let totalCasillas = maxFilas * maxColumnas;
 
@@ -26,6 +24,9 @@ function App() {
             }
         
     } 
+
+    tableroMemorin = crearTablero(maxFilas, maxColumnas);
+    pintarTablero(tableroMemorin, maxFilas, maxColumnas);
 
 }
 
@@ -43,5 +44,21 @@ function crearTablero(maxFilas, maxColumnas){
     return arrayTablero
 
 }
+
+function pintarTablero(tablero, filas, columnas){
+    document.write('<table>');
+
+    for (let i = 0; i < filas; i++){
+        document.write('<tr>');
+
+        for (let j = 0; j < columnas; j++){
+            document.write('<td>' + tablero[i][j] + '</td>');
+        }
+        document.write('</tr>');
+    }
+    document.write('</table>');
+}
+
+console.log(crearTablero);
 
 App();
