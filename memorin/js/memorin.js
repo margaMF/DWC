@@ -1,3 +1,5 @@
+let iconos = ["&#128520;", "&#129313;", "&#129312;", "&#128519;", "&#128125;", "&#128123;", "&#128126;", "&#128373;", "&#128585;", "&#129302;"];
+
 function App() {
 
     //Pedimos el maxFilas y maxColumnas al usuario.
@@ -59,6 +61,11 @@ function pintarTablero(tablero, filas, columnas){
     document.write('</table>');
 }
 
+function colocarIconos(){
+
+}
+
 console.log(crearTablero);
+document.write(iconos);
 
 App();
