@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\buscaminas_v1\\buscaminas.html",
+            "program": "${workspaceFolder}\\memorin\\memorin.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
