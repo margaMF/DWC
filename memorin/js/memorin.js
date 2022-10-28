@@ -1,126 +1,137 @@
-let iconos = ["&#128520;", "&#129313;", "&#129312;", "&#128519;", "&#128125;", "&#128123;", "&#128126;", "&#128373;", "&#128585;", "&#129302;"];
 
-function App() {
+class Tablero {
 
-    //Pedimos el maxFilas y maxColumnas al usuario.
-    let maxFilas = prompt('¿Cuántas filas quieres?');
-    let maxColumnas = prompt('¿Cuantas columnas quieres?');
+    constructor(filas, columnas) {
+        this.filas = filas;
+        this.columnas = columnas;
+        this.iconos = ["&#128520;", "&#129313;", "&#129312;", "&#128519;", "&#128125;", "&#128123;", "&#128126;", "&#128373;", "&#128585;", "&#129302;"];
 
-    totalCasillas = maxFilas * maxColumnas;
+        this.crearTablero();
+    }
 
-    if ((totalCasillas % 2) != 0) {
-        let esPar = false;
+    crearTablero() {
+        this.arrayTablero = [];
 
-        while (esPar == false) {
+        for (let fila = 0; fila < this.filas; fila++) {
+            this.arrayTablero[fila] = [];
 
-            maxFilas = prompt('¡¡¡ERROR!!! La cantidad de filas y columnas debe ser un número par ¿Cuántas filas quieres?');
-            maxColumnas = prompt('¿Cuantas columnas quieres?');
+            for (let columna = 0; columna < this.columnas; columna++) {
+                this.arrayTablero[fila][columna] = '';
+            }
+        }
 
-            let totalCasillas = maxFilas * maxColumnas;
+    }
 
-            if ((totalCasillas % 2) == 0) {
-                esPar == true;
-                break;
+    pintarTablero() {
+        document.write('<table>');
+
+        for (let i = 0; i < this.filas; i++) {
+            document.write('<tr>');
+
+            for (let j = 0; j < this.columnas; j++) {
+                document.write(`<td>${this.arrayTablero[i][j]}</td>`);
+            }
+            document.write('</tr>');
+        }
+        document.write('</table>');
+    }
+
+}
+
+class Memorin extends Tablero {
+
+    constructor(filas, columnas, iconos) {
+        super(filas, columnas, iconos);
+
+        this.colocarIconos();
+    }
+
+    colocarIconos() {
+
+        let casillas = (this.filas * this.columnas) / 2;
+        let contador = 0;
+
+        let posFila;
+        let posFila2;
+        let posColumna;
+        let posColumna2;
+        let i = 0;
+        let esIgual = false;
+
+        while (contador < casillas) {
+            if (i >= 10) {
+                i = 0;
+            }
+            esIgual = false;
+            posFila = Math.floor(Math.random() * this.filas);
+            posColumna = Math.floor(Math.random() * this.columnas);
+            posFila2 = Math.floor(Math.random() * this.filas);
+            posColumna2 = Math.floor(Math.random() * this.columnas);
+            if (posFila == posFila2 && posColumna == posColumna2) {
+                esIgual = true;
+            }
+            if (this.arrayTablero[posFila][posColumna] == '' && this.arrayTablero[posFila2][posColumna2] == '' && esIgual == false) {
+                this.arrayTablero[posFila][posColumna] = this.iconos[i];
+                this.arrayTablero[posFila2][posColumna2] = this.iconos[i];
+                contador++;
+                i++;
+            } else {
+                let esVacio = false;
+
+                do {
+                    esIgual = false;
+                    posFila = Math.floor(Math.random() * this.filas);
+                    posColumna = Math.floor(Math.random() * this.columnas);
+                    posFila2 = Math.floor(Math.random() * this.filas);
+                    posColumna2 = Math.floor(Math.random() * this.columnas);
+
+                    if (posFila == posFila2 && posColumna == posColumna2) {
+                        esIgual = true;
+                    }
+
+                    if (this.arrayTablero[posFila][posColumna] == '' && this.arrayTablero[posFila2][posColumna2] == ''
+                        && esIgual == false) {
+                        this.arrayTablero[posFila][posColumna] = this.iconos[i];
+                        this.arrayTablero[posFila2][posColumna2] = this.iconos[i];
+                        esVacio = true;
+                        contador++;
+                        i++;
+                    }
+
+                } while (esVacio == false);
             }
 
         }
 
     }
 
-    tableroMemorin = crearTablero(maxFilas, maxColumnas);
-    tableroMemorin = colocarIconos(tableroMemorin, iconos, maxFilas, maxColumnas);
-    pintarTablero(tableroMemorin, maxFilas, maxColumnas);
-
 }
 
-function crearTablero(maxFilas, maxColumnas) {
-    let arrayTablero = [];
+//Pedimos el número de filas y de columnas al usuario.
+let maxFilas = prompt('¿Cuántas filas quieres?');
+let maxColumnas = prompt('¿Cuantas columnas quieres?');
 
-    for (let fila = 0; fila < maxFilas; fila++) {
-        arrayTablero[fila] = new Array(maxColumnas);
+totalCasillas = maxFilas * maxColumnas;
 
-        for (let columna = 0; columna < maxColumnas; columna++) {
-            arrayTablero[fila][columna] = '';
-        }
-    }
+if ((totalCasillas % 2) != 0) {
+    let esPar = false;
 
-    return arrayTablero
+    while (esPar == false) {
 
-}
+        maxFilas = prompt('¡¡¡ERROR!!! La cantidad de filas y columnas debe ser un número par ¿Cuántas filas quieres?');
+        maxColumnas = prompt('¿Cuantas columnas quieres?');
 
-function pintarTablero(tablero, filas, columnas) {
-    document.write('<table>');
+        let totalCasillas = maxFilas * maxColumnas;
 
-    for (let i = 0; i < filas; i++) {
-        document.write('<tr>');
-
-        for (let j = 0; j < columnas; j++) {
-            document.write('<td>' + tablero[i][j] + '</td>');
-        }
-        document.write('</tr>');
-    }
-    document.write('</table>');
-}
-
-function colocarIconos(arrayTablero, iconos, maxFilas, maxColumnas) {
-
-    let casillas = (maxFilas * maxColumnas) / 2;
-    let contador = 0;
-
-    let posFila;
-    let posFila2;
-    let posColumna;
-    let posColumna2;
-    let i = 0;
-    let esIgual = false;
-    
-    while (contador < casillas) {
-        if (i >= 10) {
-            i = 0;
-        }
-        esIgual = false;
-        posFila = Math.floor(Math.random() * maxFilas);
-        posColumna = Math.floor(Math.random() * maxColumnas);
-        posFila2 = Math.floor(Math.random() * maxFilas);
-        posColumna2 = Math.floor(Math.random() * maxColumnas);
-        if(posFila == posFila2 && posColumna == posColumna2){
-            esIgual = true;
-        }
-        if (arrayTablero[posFila][posColumna] == '' && arrayTablero[posFila2][posColumna2] == '' && esIgual == false) {
-            arrayTablero[posFila][posColumna] = iconos[i];
-            arrayTablero[posFila2][posColumna2] = iconos[i];
-            contador++;
-            i++;
-        } else {
-            let esVacio = false;
-
-            do {
-                esIgual = false;
-                posFila = Math.floor(Math.random() * maxFilas);
-                posColumna = Math.floor(Math.random() * maxColumnas);
-                posFila2 = Math.floor(Math.random() * maxFilas);
-                posColumna2 = Math.floor(Math.random() * maxColumnas);
-
-                if(posFila == posFila2 && posColumna == posColumna2){
-                    esIgual = true;
-                }
-
-                if (arrayTablero[posFila][posColumna] == '' && arrayTablero[posFila2][posColumna2] == '' 
-                    && esIgual == false) {
-                    arrayTablero[posFila][posColumna] = iconos[i];
-                    arrayTablero[posFila2][posColumna2] = iconos[i];
-                    esVacio = true;
-                    contador++;
-                    i++;
-                }
-
-            } while (esVacio == false);
+        if ((totalCasillas % 2) == 0) {
+            esPar == true;
+            break;
         }
 
     }
-    return arrayTablero;
 
 }
 
-App();
-console.log(crearTablero);
+let memorin1 = new Memorin(maxFilas, maxColumnas);
+console.log(memorin1.arrayTablero);
+memorin1.pintarTablero();
