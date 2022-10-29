@@ -10,6 +10,8 @@ class Tablero {
     }
 
     crearTablero() {
+        //Se crea un array para guardar los iconos.
+
         this.arrayTablero = [];
 
         for (let fila = 0; fila < this.filas; fila++) {
@@ -23,6 +25,8 @@ class Tablero {
     }
 
     pintarTablero() {
+        //Se crea el tablero en html
+
         document.write('<table>');
 
         for (let i = 0; i < this.filas; i++) {
@@ -47,6 +51,7 @@ class Memorin extends Tablero {
     }
 
     colocarIconos() {
+        //Se comprueba si la casilla está vacía, si es así, se imprime el icono, si no, se genera de nuevo otro númeor aleatorio.
 
         let casillas = (this.filas * this.columnas) / 2;
         let contador = 0;
@@ -107,7 +112,7 @@ class Memorin extends Tablero {
 
 }
 
-//Pedimos el número de filas y de columnas al usuario.
+//Se pide el número de filas y de columnas al usuario.
 let maxFilas = prompt('¿Cuántas filas quieres?');
 let maxColumnas = prompt('¿Cuantas columnas quieres?');
 
