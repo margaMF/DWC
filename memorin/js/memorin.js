@@ -29,7 +29,7 @@ class Tablero {
             document.write('<tr>');
 
             for (let j = 0; j < this.columnas; j++) {
-                document.write(`<td>${this.arrayTablero[i][j]}</td>`);
+                document.write(`<td><p>${this.arrayTablero[i][j]}</p></td>`);
             }
             document.write('</tr>');
         }
@@ -124,8 +124,8 @@ if ((totalCasillas % 2) != 0) {
         let totalCasillas = maxFilas * maxColumnas;
 
         if ((totalCasillas % 2) == 0) {
-            esPar == true;
-            break;
+            esPar = true;
+            
         }
 
     }
