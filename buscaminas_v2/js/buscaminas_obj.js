@@ -50,17 +50,33 @@ class Tablero {
 
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
-                fila.appendChild(columna);
                 columna.innerHTML = this.arrayTablero[i][j];
-                let atributoFilaColumna =  document.createAttribute('data-fila_columna');
-                columna.attributes.setNamedItem(atributoFilaColumna);
+               
+                columna.id = `f${j}_c${j}`; 
+                columna.dataset.f = i;
+                columna.dataset.c = j; 
+                fila.appendChild(columna);
 
-                
+                columna.addEventListener('click', this.despejar);
+                columna.addEventListener('contextmenu', this.marcar);
             }
 
         }
         document.body.appendChild(tabla);
 
+    }
+
+    //Obtenerr el nodo que produjo el evento
+    //obtener del nodo que produjo el evento el valor de su atributo data_fila y data_columna
+    despejar(){
+        alert("Despejando");
+
+        //alert("Despejada celda (valor_fila, valor_columna)");
+    }
+
+    marcar(){
+        alert("He marcado");
+        //alert("Marcada celda (valor_fila, valor_columna)");
     }
 
     modificarFilas(nuevasFilas) {
