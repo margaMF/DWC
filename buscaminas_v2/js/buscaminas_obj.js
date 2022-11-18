@@ -19,7 +19,7 @@ class Tablero {
             }
         }
     }
-    
+    /*
     dibujarTablero() {
         // Creamos el tablero en html
         document.write('<table>');
@@ -35,7 +35,33 @@ class Tablero {
         }
         document.write('</table>');
     }
-    
+    */
+
+    dibujarTableroDom(){
+        //Creamos el tablero en el DOM
+        let tabla = document.createElement('table');
+        let fila;
+        let columna;
+
+        for (let i = 0; i < this.filas; i++) {
+            fila = document.createElement('tr');
+            tabla.appendChild(fila);
+            
+
+            for (let j = 0; j < this.columnas; j++) {
+                columna = document.createElement('td');
+                fila.appendChild(columna);
+                columna.innerHTML = this.arrayTablero[i][j];
+                let atributoFilaColumna =  document.createAttribute('data-fila_columna');
+                columna.attributes.setNamedItem(atributoFilaColumna);
+
+                
+            }
+
+        }
+        document.body.appendChild(tabla);
+
+    }
 
     modificarFilas(nuevasFilas) {
         // Modificar el número de filas y volver a crear el tablero con las filas nuevas
@@ -105,7 +131,7 @@ class Buscaminas extends Tablero {
     }
 }
 
+window.onload = function(){
     let buscaminas1 = new Buscaminas(5,5,5);
-    buscaminas1.dibujarTablero();
-   
-
+    buscaminas1.dibujarTableroDom();
+}
