@@ -66,17 +66,18 @@ class Tablero {
 
     }
 
-    //Obtenerr el nodo que produjo el evento
-    //obtener del nodo que produjo el evento el valor de su atributo data_fila y data_columna
     despejar(){
-        alert("Despejando");
+        let columna = this.dataset.c;
+        let fila = this.dataset.f;
+        alert(`Despejar celda (${fila}, ${columna})`);
 
         //alert("Despejada celda (valor_fila, valor_columna)");
     }
 
     marcar(){
-        alert("He marcado");
-        //alert("Marcada celda (valor_fila, valor_columna)");
+        let columna = this.dataset.c;
+        let fila = this.dataset.f;
+        alert(`Marcar celda (${fila}, ${columna})`);
     }
 
     modificarFilas(nuevasFilas) {
