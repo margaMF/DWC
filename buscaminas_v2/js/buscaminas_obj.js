@@ -50,9 +50,8 @@ class Tablero {
 
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
-                columna.innerHTML = this.arrayTablero[i][j];
-               
-                columna.id = `f${j}_c${j}`; 
+                
+                columna.id = `f${i}_c${j}`; 
                 columna.dataset.f = i;
                 columna.dataset.c = j; 
                 fila.appendChild(columna);
@@ -71,13 +70,18 @@ class Tablero {
         let fila = this.dataset.f;
         alert(`Despejar celda (${fila}, ${columna})`);
 
-        //alert("Despejada celda (valor_fila, valor_columna)");
     }
 
     marcar(){
-        let columna = this.dataset.c;
-        let fila = this.dataset.f;
-        alert(`Marcar celda (${fila}, ${columna})`);
+
+        if (this.innerHTML == "") {
+            this.innerHTML = "\uD83D\uDEA9";
+        } else if (this.innerHTML == "\uD83D\uDEA9") {
+            this.innerHTML = "\u2754";
+        } else if(this.innerHTML == "\u2754") {
+            this.innerHTML = "";
+        };
+        
     }
 
     modificarFilas(nuevasFilas) {
