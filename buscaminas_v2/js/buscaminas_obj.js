@@ -4,7 +4,6 @@ class Tablero {
         this.columnas = columnas;
 
         this.crearTablero();
-       
     }
 
     crearTablero() {
@@ -19,8 +18,8 @@ class Tablero {
             }
         }
     }
-    /*
-    dibujarTablero() {
+
+    dibujarTableroHTML() {
         // Creamos el tablero en html
         document.write('<table>');
 
@@ -28,17 +27,16 @@ class Tablero {
             document.write('<tr>');
 
             for (let j = 0; j < this.columnas; j++) {
-                document.write(`<td>${this.arrayTablero[i][j]}</td>`);
+                document.write(`<td></td>`);
             }
 
             document.write('</tr>');
         }
         document.write('</table>');
     }
-    */
 
-    dibujarTableroDom(){
-        //Creamos el tablero en el DOM
+    dibujarTableroDOM(){
+        // Creamos el tablero en DOM
         let tabla = document.createElement('table');
         let fila;
         let columna;
@@ -46,43 +44,21 @@ class Tablero {
         for (let i = 0; i < this.filas; i++) {
             fila = document.createElement('tr');
             tabla.appendChild(fila);
-            
 
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
-                
-                columna.id = `f${i}_c${j}`; 
-                columna.dataset.f = i;
-                columna.dataset.c = j; 
+                columna.id = `f${i}_c${j}`;
+                columna.dataset.fila = i;
+                columna.dataset.columna = j;
                 fila.appendChild(columna);
-
-                columna.addEventListener('click', this.despejar);
-                columna.addEventListener('contextmenu', this.marcar);
             }
-
         }
+
         document.body.appendChild(tabla);
-
     }
 
-    despejar(){
-        let columna = this.dataset.c;
-        let fila = this.dataset.f;
-        alert(`Despejar celda (${fila}, ${columna})`);
-
-    }
-
-    marcar(){
-
-        if (this.innerHTML == "") {
-            this.innerHTML = "\uD83D\uDEA9";
-        } else if (this.innerHTML == "\uD83D\uDEA9") {
-            this.innerHTML = "\u2754";
-        } else if(this.innerHTML == "\u2754") {
-            this.innerHTML = "";
-        };
-        
-    }
+    
+    
 
     modificarFilas(nuevasFilas) {
         // Modificar el número de filas y volver a crear el tablero con las filas nuevas
@@ -129,7 +105,7 @@ class Buscaminas extends Tablero {
 
     colocarNumMinas() {
         let numMinasAlrededor;
-    
+
         for (let fila = 0; fila < this.filas; fila++) {
             for (let columna = 0; columna < this.columnas; columna++) {
                 numMinasAlrededor = 0;
@@ -145,14 +121,61 @@ class Buscaminas extends Tablero {
                         }
                         this.arrayTablero[fila][columna] = numMinasAlrededor;
                     }
-        
                 }
             }
         }
     }
+
+    dibujarTableroDOM(){
+        super.dibujarTableroDOM();
+
+        let celda;
+
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++){
+                celda = document.getElementById(`f${i}_c${j}`);
+
+                celda.addEventListener('click', this.despejar.bind(this));
+                celda.addEventListener('contextmenu', this.marcar.bind(this));
+            }
+        }
+    }
+
+    despejar(elEvento) {
+        let evento = elEvento || window.event;
+        let celda = evento.currentTarget;
+        let fila = celda.dataset.fila;
+        let columna = celda.dataset.columna;
+    
+        if (this.arrayTablero[fila][columna] >= 1){
+            celda.innerHTML = this.arrayTablero[fila][columna];
+        }
+
+        else if(this.arrayTablero[fila][columna] == 'MINA' ){
+            celda.innerHTML = "BOMBA";
+        }
+        
+    };
+
+    marcar(elEvento) {
+        let evento = elEvento || window.event;
+        let celda = evento.currentTarget;
+        let fila = celda.dataset.fila;
+        let columna = celda.dataset.columna;
+
+        // Utilizando los formatos UNICODE de JS
+        
+        if (celda.innerHTML == "") {
+            celda.innerHTML = "\uD83D\uDEA9";
+        } else if (celda.innerHTML == "\uD83D\uDEA9") {
+            celda.innerHTML = "\u2754";
+        } else if(celda.innerHTML == "\u2754") {
+            celda.innerHTML = "";
+        }  
+    }
 }
 
-window.onload = function(){
-    let buscaminas1 = new Buscaminas(5,5,5);
-    buscaminas1.dibujarTableroDom();
+window.onload = function() {
+    let buscaminas1 = new Buscaminas(5, 5, 5);
+    buscaminas1.dibujarTableroDOM();
 }
