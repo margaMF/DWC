@@ -146,13 +146,18 @@ class Buscaminas extends Tablero {
         let celda = evento.currentTarget;
         let fila = celda.dataset.fila;
         let columna = celda.dataset.columna;
-    
-        if (this.arrayTablero[fila][columna] >= 1){
-            celda.innerHTML = this.arrayTablero[fila][columna];
-        }
 
-        else if(this.arrayTablero[fila][columna] == 'MINA' ){
-            celda.innerHTML = "BOMBA";
+        let valorCelda = this.arrayTablero[fila][columna];
+        let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
+        let esBomba = (valorCelda == 'MINA');
+
+        if(esNumero){
+            celda.innerHTML = valorCelda;
+            celda.removeEventListener('click', this.despejar.bind(this));
+            celda.removeEventListener('contextmenu', this.marcar.bind(this));
+        } else if (esBomba){
+            celda.innerHTML = valorCelda;
+            celda.parentNode.parentNode;
         }
         
     };
