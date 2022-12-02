@@ -139,6 +139,7 @@ class Buscaminas extends Tablero {
                 celda.addEventListener('contextmenu', this.marcar.bind(this));
             }
         }
+        console.log(this.arrayTablero);
     }
 
     despejar(elEvento) {
@@ -150,14 +151,42 @@ class Buscaminas extends Tablero {
         let valorCelda = this.arrayTablero[fila][columna];
         let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
         let esBomba = (valorCelda == 'MINA');
+        let bombaseleccionadaMal;
+
+        let arrayFilas;
+        let arrayColumnas;
 
         if(esNumero){
             celda.innerHTML = valorCelda;
             celda.removeEventListener('click', this.despejar.bind(this));
             celda.removeEventListener('contextmenu', this.marcar.bind(this));
         } else if (esBomba){
-            celda.innerHTML = valorCelda;
-            celda.parentNode.parentNode;
+            arrayFilas = celda.parentNode.parentNode.childNodes;
+            for(let tr of arrayFilas){
+                arrayColumnas = tr.childNodes;
+                for(let td of arrayColumnas){
+                    td.removeEventListener('click', this.despejar.bind(this));
+                    td.removeEventListener('contextmenu', this.marcar.bind(this));
+
+                    fila = td.dataset.fila;
+                    columna = td.dataset.columna;
+                    valorCelda = this.arrayTablero[fila][columna];
+                    if(td.lastChild != null){
+                        bombaseleccionadaMal = (td.innerHTML == "\uD83D\uDEA9" && valorCelda != 'MINA');
+
+                        if(bombaseleccionadaMal){
+                            td.innerHTML = "";
+                            td.sytle.background = 'red';
+                            td.innerHTML = valorCelda;
+                        }else if(valorCelda == 'MINA'){
+                            td.innerHTML = valorCelda;
+                        }
+                    }else if(valorCelda == 'MINA'){
+                        td.innerHTML = valorCelda;
+                    }
+                }
+            }
+            alert(`¡HAS PERDIDO!`);
         }
         
     };
