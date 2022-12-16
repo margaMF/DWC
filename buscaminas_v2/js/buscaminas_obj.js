@@ -50,6 +50,7 @@ class Tablero {
                 columna.id = `f${i}_c${j}`;
                 columna.dataset.fila = i;
                 columna.dataset.columna = j;
+                columna.dataset.despejado = false;
                 fila.appendChild(columna);
             }
         }
@@ -135,8 +136,11 @@ class Buscaminas extends Tablero {
             for (let j = 0; j < this.columnas; j++){
                 celda = document.getElementById(`f${i}_c${j}`);
 
-                celda.addEventListener('click', this.despejar.bind(this));
-                celda.addEventListener('contextmenu', this.marcar.bind(this));
+                this.despejar = this.despejar.bind(this);
+                this.marcar = this.marcar.bind(this);
+
+                celda.addEventListener('click', this.despejar);
+                celda.addEventListener('contextmenu', this.marcar);
             }
         }
         console.log(this.arrayTablero);
@@ -145,28 +149,41 @@ class Buscaminas extends Tablero {
     despejar(elEvento) {
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
-        let fila = celda.dataset.fila;
-        let columna = celda.dataset.columna;
+
+        this.despejarCelda(celda);
+    }
+
+    despejarCelda(celda){
+        let fila = parseInt(celda.dataset.fila);
+        let columna = parseInt(celda.dataset.columna);
+        
+        //Marcar la celda despejada
+        celda.dataset.despejado = true;
+        celda.style.backgroundColor = "grey";
+        celda.removeEventListener('click', this.despejar);
+        celda.removeEventListener('contextmenu', this.marcar);
 
         let valorCelda = this.arrayTablero[fila][columna];
         let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
         let esBomba = (valorCelda == 'MINA');
+        let esVacio = (valorCelda == 0);
+        let estaDespejado;
         let bombaseleccionadaMal;
 
         let arrayFilas;
         let arrayColumnas;
+        let celdaNueva;
+        
 
         if(esNumero){
             celda.innerHTML = valorCelda;
-            celda.removeEventListener('click', this.despejar.bind(this));
-            celda.removeEventListener('contextmenu', this.marcar.bind(this));
         } else if (esBomba){
             arrayFilas = celda.parentNode.parentNode.childNodes;
             for(let tr of arrayFilas){
                 arrayColumnas = tr.childNodes;
                 for(let td of arrayColumnas){
-                    td.removeEventListener('click', this.despejar.bind(this));
-                    td.removeEventListener('contextmenu', this.marcar.bind(this));
+                    td.removeEventListener('click', this.despejar);
+                    td.removeEventListener('contextmenu', this.marcar);
 
                     fila = td.dataset.fila;
                     columna = td.dataset.columna;
@@ -176,7 +193,7 @@ class Buscaminas extends Tablero {
 
                         if(bombaseleccionadaMal){
                             td.innerHTML = "";
-                            td.sytle.background = 'red';
+                            td.style.backgroundColor  = 'red';
                             td.innerHTML = valorCelda;
                         }else if(valorCelda == 'MINA'){
                             td.innerHTML = valorCelda;
@@ -187,17 +204,34 @@ class Buscaminas extends Tablero {
                 }
             }
             alert(`¡HAS PERDIDO!`);
+        }else if(esVacio){
+
+            for (let i = fila - 1; i <= fila + 1; i++) {
+                if (i >= 0 && i < this.filas) {
+                    for (let j = columna - 1; j <= columna + 1; j++) {
+                        if (j >= 0 && j < this.columnas) {
+
+                            celdaNueva = document.getElementById(`f${i}_c${j}`);
+                            estaDespejado = (celdaNueva.dataset.despejado == 'true');
+                            if(!estaDespejado){
+                                console.log(`f${i}_c${j}`);
+                                this.despejarCelda(celdaNueva);
+                            }
+                        }
+                    }
+                }
+            }
+       
         }
-        
-    };
+    }
 
     marcar(elEvento) {
+        //Capturar el eventi y el nodo que lo generó
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
+        
         let fila = celda.dataset.fila;
         let columna = celda.dataset.columna;
-
-        // Utilizando los formatos UNICODE de JS
         
         if (celda.innerHTML == "") {
             celda.innerHTML = "\uD83D\uDEA9";
@@ -207,6 +241,12 @@ class Buscaminas extends Tablero {
             celda.innerHTML = "";
         }  
     }
+
+    // ganar(){
+    //     if(){
+
+    //     }
+    // }
 }
 
 window.onload = function() {
