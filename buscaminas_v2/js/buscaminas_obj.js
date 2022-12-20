@@ -82,6 +82,7 @@ class Buscaminas extends Tablero {
     constructor(filas, columnas, numMinas) {
         super(filas, columnas);
         this.numMinas = numMinas;
+        this.numBanderas = 0;
 
         this.colocarMinas();
         this.colocarNumMinas();
@@ -159,9 +160,12 @@ class Buscaminas extends Tablero {
         
         //Marcar la celda despejada
         celda.dataset.despejado = true;
-        celda.style.backgroundColor = "grey";
+        celda.style.backgroundColor = "rgb(163, 127, 155)";
         celda.removeEventListener('click', this.despejar);
         celda.removeEventListener('contextmenu', this.marcar);
+
+        //Descontar una casillas pendiente de despejar
+        this.numCasillasADespejar--;
 
         let valorCelda = this.arrayTablero[fila][columna];
         let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
@@ -177,6 +181,11 @@ class Buscaminas extends Tablero {
 
         if(esNumero){
             celda.innerHTML = valorCelda;
+
+            if(this.numCasillasADespejar == 0){
+                alert('HAS GANADO');
+            }
+
         } else if (esBomba){
             arrayFilas = celda.parentNode.parentNode.childNodes;
             for(let tr of arrayFilas){
@@ -196,10 +205,10 @@ class Buscaminas extends Tablero {
                             td.style.backgroundColor  = 'red';
                             td.innerHTML = valorCelda;
                         }else if(valorCelda == 'MINA'){
-                            td.innerHTML = valorCelda;
+                            td.innerHTML = "\ud83d\udca3";
                         }
                     }else if(valorCelda == 'MINA'){
-                        td.innerHTML = valorCelda;
+                        td.innerHTML = "\ud83d\udca3";
                     }
                 }
             }
@@ -226,7 +235,7 @@ class Buscaminas extends Tablero {
     }
 
     marcar(elEvento) {
-        //Capturar el eventi y el nodo que lo generó
+        //Capturar el evento y el nodo que lo generó
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
         
@@ -235,18 +244,21 @@ class Buscaminas extends Tablero {
         
         if (celda.innerHTML == "") {
             celda.innerHTML = "\uD83D\uDEA9";
+            this.numBanderas++;
+            if(this.numBanderas == this.numMinas && this.numCasillasADespejar == 0){
+                console.log('HAS GANADO');
+            }
         } else if (celda.innerHTML == "\uD83D\uDEA9") {
             celda.innerHTML = "\u2754";
+            this.numBanderas--;
         } else if(celda.innerHTML == "\u2754") {
             celda.innerHTML = "";
         }  
+
+        console.log(this.numBanderas);
     }
 
-    // ganar(){
-    //     if(){
-
-    //     }
-    // }
+    
 }
 
 window.onload = function() {
