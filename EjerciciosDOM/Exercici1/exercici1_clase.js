@@ -1,4 +1,48 @@
-let nodoDiv = document.getElementsById('info');
-let nodo = document.createElement('p');
+window.onload = function(){
+    let nodoDiv = document.getElementsById('info');
+    let nodoLink = document.getElementsByTagName('a');
+    let nodoP1 = document.createElement('p');
+    nodoP1.innerHTML = `Nombre d'enllaços de la pàgina = ${nodoLink.length}`;
+    nodoDiv.appendChild(nodoP1); 
+
+    let nodosParrafo = document.getElementsByTagName('p');
+    let parrafosDiv = nodoDiv.getElementsByTagName('p');
+    let nodoP2 = document.createElement('p');
+    let numeroParrafos = parseInt(nodosParrafo.length) - parseInt(parrafosDiv.length.length)
+    nodoP2.innerHTML = `Nombre de paràgrafs = ${numeroParrafos} -`;
+    nodoDiv.appendChild(nodoP2);
+
+    let nodoP3 = document.createElement('p');
+    nodoP3.innerHTML = `El pemultim enllaç apunta a = ${nodoLink[nodoLink.length - 2]}`;
+    nodoDiv.appendChild(nodoP3);
+
+    let nodoP4 = document.createElement('p');
+    nodoP4.innerHTML = `L'últim enllaç apunta a = ${nodoLink[nodoLink.length - 1]}`;
+    nodoDiv.appendChild(nodoP4);
+
+    for (enlace in nodoLink){
+        if(enlace == 'http://prueba'){
+            contadorEnlaces++;
+        }
+    }
+
+    let nodoP5 = document.createElement('p');
+    nodoP5.innerHTML = `${contadorEnlaces} enllaços apunten a http://prueba`;
+    nodoDiv.appendChild(nodoP5);
+
+    let nodoP6;
+    let enlacesParrafo;
+    let parrafo;
+    for (let i = 0; i < numeroParrafos; i++){
+        parrafo = nodosParrafo[i + parseInt(parrafosDiv.length)];
+        enlacesParrafo = parrafo.getElementsByTagName('a');
+        nodoP6.createElement('p');
+        nodoP6.innerHTML = `Nombre d'enllaços del paràgraf = ${i+1}${enlacesParrafo.length}`;
+        nodoDiv.appendChild(nodoP6);
+
+    }
+}
+
+
     
 
