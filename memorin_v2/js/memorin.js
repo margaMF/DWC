@@ -24,21 +24,21 @@ class Tablero {
 
     }
 
-    // pintarTablero() {
-    //     //Se crea el tablero en html
+    pintarTablero() {
+        //Se crea el tablero en html
 
-    //     document.write('<table>');
+        document.write('<table>');
 
-    //     for (let i = 0; i < this.filas; i++) {
-    //         document.write('<tr>');
+        for (let i = 0; i < this.filas; i++) {
+            document.write('<tr>');
 
-    //         for (let j = 0; j < this.columnas; j++) {
-    //             document.write(`<td><p>${this.arrayTablero[i][j]}</p></td>`);
-    //         }
-    //         document.write('</tr>');
-    //     }
-    //     document.write('</table>');
-    // }
+            for (let j = 0; j < this.columnas; j++) {
+                document.write(`<td><p></p></td>`);
+            }
+            document.write('</tr>');
+        }
+        document.write('</table>');
+    }
 
     pintarTableroDOM() {
         //Se crea el tablero en DOM
@@ -155,6 +155,8 @@ if ((totalCasillas % 2) != 0) {
 
 }
 
-let memorin1 = new Memorin(maxFilas, maxColumnas);
-console.log(memorin1.arrayTablero);
-memorin1.pintarTablero();
+window.onload = function(){
+    let memorin1 = new Memorin(maxFilas, maxColumnas);
+    memorin1.pintarTableroDOM();
+}
+
