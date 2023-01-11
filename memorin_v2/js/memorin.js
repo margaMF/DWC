@@ -51,7 +51,7 @@ class Tablero {
             tabla.appendChild(fila);
 
             for (let j = 0; j < this.columnas; j++) {
-                columna.document.createElement('td');
+                columna = document.createElement('td');
                 fila.appendChild(columna);
             }
         }
