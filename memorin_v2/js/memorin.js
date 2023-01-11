@@ -24,20 +24,38 @@ class Tablero {
 
     }
 
-    pintarTablero() {
-        //Se crea el tablero en html
+    // pintarTablero() {
+    //     //Se crea el tablero en html
 
-        document.write('<table>');
+    //     document.write('<table>');
+
+    //     for (let i = 0; i < this.filas; i++) {
+    //         document.write('<tr>');
+
+    //         for (let j = 0; j < this.columnas; j++) {
+    //             document.write(`<td><p>${this.arrayTablero[i][j]}</p></td>`);
+    //         }
+    //         document.write('</tr>');
+    //     }
+    //     document.write('</table>');
+    // }
+
+    pintarTableroDOM() {
+        //Se crea el tablero en DOM
+        let tabla = document.createElement('table');
+        let fila;
+        let columna;
 
         for (let i = 0; i < this.filas; i++) {
-            document.write('<tr>');
+            fila = document.createElement('tr');
+            tabla.appendChild(fila);
 
             for (let j = 0; j < this.columnas; j++) {
-                document.write(`<td><p>${this.arrayTablero[i][j]}</p></td>`);
+                columna.document.createElement('td');
+                fila.appendChild(columna);
             }
-            document.write('</tr>');
         }
-        document.write('</table>');
+        document.body.appendChild(tabla)
     }
 
 }
