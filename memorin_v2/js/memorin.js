@@ -52,7 +52,12 @@ class Tablero {
 
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
+                columna.id = `f${i}_c${j}`;
+                columna.dataset.fila = i;
+                columna.dataset.columna = j;
                 fila.appendChild(columna);
+
+                
             }
         }
         document.body.appendChild(tabla)
@@ -69,7 +74,7 @@ class Memorin extends Tablero {
     }
 
     colocarIconos() {
-        //Se comprueba si la casilla está vacía, si es así, se imprime el icono, si no, se genera de nuevo otro númeor aleatorio.
+        //Se comprueba si la casilla está vacía, si es así, se imprime el icono, si no, se genera de nuevo otro número aleatorio.
 
         let casillas = (this.filas * this.columnas) / 2;
         let contador = 0;
@@ -126,6 +131,33 @@ class Memorin extends Tablero {
 
         }
 
+    }
+
+    pintarTableroDOM() {
+        super.pintarTableroDOM();
+
+        let celda;
+
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                celda = document.getElementById(`f${i}_c${j}`);
+
+                this.despejar = this.despejar.bind(this);
+
+                celda.addEventListener('click', this.despejar);
+                
+            }
+        }
+        console.log(this.arrayTablero);
+    }
+
+    despejar(celda){
+        let fila = parseInt(celda.dataset.fila);
+        let columna = parseInt(celda.dataset.columna);
+
+        let iconoCelda = this.arrayTablero[fila][columna];
+
+        celda.innerHTML = iconoCelda;
     }
 
 }
