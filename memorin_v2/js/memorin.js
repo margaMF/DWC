@@ -151,7 +151,14 @@ class Memorin extends Tablero {
         console.log(this.arrayTablero);
     }
 
-    despejar(celda){
+    despejar(elEvento){
+        let evento = elEvento || window.event;
+        let celda = evento.currentTarget;
+
+        this.despejarCelda(celda);
+    }
+
+    despejarCelda(celda){
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
 
