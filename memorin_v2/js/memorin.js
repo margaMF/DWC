@@ -145,28 +145,49 @@ class Memorin extends Tablero {
                 this.despejar = this.despejar.bind(this);
 
                 celda.addEventListener('click', this.despejar);
+                celda.addEventListener('click', this.tapar);
                 
             }
         }
         console.log(this.arrayTablero);
     }
 
+
+    //Se captura el evento y el nodo que lo genera
     despejar(elEvento){
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
+        // this.taparCelda(celda);
+        
     }
 
+    //Se despeja la celda y se muestra el icono
     despejarCelda(celda){
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
+        let iconoCasilla = [];
 
-        let iconoCelda = this.arrayTablero[fila][columna];
+        let valorCasilla = this.arrayTablero[fila][columna];
 
-        celda.innerHTML = iconoCelda;
+        celda.innerHTML = valorCasilla;
+        //Guardamos el icono de cada Casilla dentro de un array.
+        iconoCasilla = valorCasilla;
+
+        let dosCasillasSeleccionadas = (iconoCasilla.length == 2);
+
+        while(dosCasillasSeleccionadas){
+            if(iconoCasilla[0] == iconoCasilla[1]){
+                console.log("Correcto");
+            }
+        }
+
     }
 
+    // taparCelda(){
+    //     celda.innerHTML = "";
+    // }
 }
 
 //Se pide el número de filas y de columnas al usuario.
