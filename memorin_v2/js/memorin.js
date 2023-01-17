@@ -147,9 +147,7 @@ class Memorin extends Tablero {
 
                 this.despejar = this.despejar.bind(this);
 
-                celda.addEventListener('click', this.despejar);
-                celda.addEventListener('click', this.tapar);
-                
+                celda.addEventListener('click', this.despejar);                
             }
         }
         console.log(this.arrayTablero);
@@ -161,6 +159,7 @@ class Memorin extends Tablero {
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
+        this.esPareja(celda);
     }
 
     //Se despeja la celda y se muestra el icono
@@ -171,21 +170,20 @@ class Memorin extends Tablero {
         let valorCasilla = this.arrayTablero[fila][columna];
 
         celda.innerHTML = valorCasilla;
+        let idCelda = celda.id;
         //Guardamos el icono de cada Casilla dentro de un array.
-        this.arrayIconoCasilla.push(valorCasilla);
+        //Guardar en el array la posición de celda también.
+        this.arrayIconoCasilla.push(valorCasilla, idCelda);
+    }
 
-        console.log(this.arrayIconoCasilla.length);
-
+    esPareja(celda){
         //Comprobamos si el arrayIconoCasilla tiene dos posiciones y si estas dos son iguales.
-        // if(this.arrayIconoCasilla.length == 2){
-        //     if(arrayIconoCasilla[0] == arrayIconoCasilla[1]){
-        //         celda.style.backgroundColor  = 'green';
-        //     }
-
-        //     // if(arrayIconoCasilla[0] != arrayIconoCasilla[1]){
-
-        //     // }
-        // }
+        //Comprobar si recibe el valor del icono y la posición de la celda.
+        if(this.arrayIconoCasilla.length == 2){
+            if(this.arrayIconoCasilla[0] == this.arrayIconoCasilla[1]){
+                celda.style.backgroundColor  = 'green';
+            }
+        }
     }
 }
 
