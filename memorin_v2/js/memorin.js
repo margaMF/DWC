@@ -152,42 +152,43 @@ class Memorin extends Tablero {
         console.log(this.arrayTablero);
     }
 
-
     //Se captura el evento y el nodo que lo genera
     despejar(elEvento){
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
-        // this.taparCelda(celda);
-        
     }
 
     //Se despeja la celda y se muestra el icono
     despejarCelda(celda){
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
-        let iconoCasilla = [];
-
+        
         let valorCasilla = this.arrayTablero[fila][columna];
+
+        let arrayIconoCasilla = [];
+
+        let contadorPuntuacion = 0;
 
         celda.innerHTML = valorCasilla;
         //Guardamos el icono de cada Casilla dentro de un array.
-        iconoCasilla = valorCasilla;
+        arrayIconoCasilla = valorCasilla;
 
-        let dosCasillasSeleccionadas = (iconoCasilla.length == 2);
+        console.log(arrayIconoCasilla.length);
 
-        while(dosCasillasSeleccionadas){
-            if(iconoCasilla[0] == iconoCasilla[1]){
-                console.log("Correcto");
+        //Comprobamos si el arrayIconoCasilla tiene dos posiciones y si estas dos son iguales.
+        if(arrayIconoCasilla.length == 2){
+            if(arrayIconoCasilla[0] == arrayIconoCasilla[1]){
+                celda.style.backgroundColor  = 'green';
+                contadorPuntuacion++;
             }
+
+            // if(arrayIconoCasilla[0] != arrayIconoCasilla[1]){
+
+            // }
         }
-
     }
-
-    // taparCelda(){
-    //     celda.innerHTML = "";
-    // }
 }
 
 //Se pide el número de filas y de columnas al usuario.
