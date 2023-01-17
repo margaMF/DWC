@@ -22,6 +22,9 @@ class Tablero {
             }
         }
 
+        
+        this.arrayIconoCasilla = [];
+
     }
 
     pintarTablero() {
@@ -167,27 +170,22 @@ class Memorin extends Tablero {
         
         let valorCasilla = this.arrayTablero[fila][columna];
 
-        let arrayIconoCasilla = [];
-
-        let contadorPuntuacion = 0;
-
         celda.innerHTML = valorCasilla;
         //Guardamos el icono de cada Casilla dentro de un array.
-        arrayIconoCasilla = valorCasilla;
+        this.arrayIconoCasilla.push(valorCasilla);
 
-        console.log(arrayIconoCasilla.length);
+        console.log(this.arrayIconoCasilla.length);
 
         //Comprobamos si el arrayIconoCasilla tiene dos posiciones y si estas dos son iguales.
-        if(arrayIconoCasilla.length == 2){
-            if(arrayIconoCasilla[0] == arrayIconoCasilla[1]){
-                celda.style.backgroundColor  = 'green';
-                contadorPuntuacion++;
-            }
+        // if(this.arrayIconoCasilla.length == 2){
+        //     if(arrayIconoCasilla[0] == arrayIconoCasilla[1]){
+        //         celda.style.backgroundColor  = 'green';
+        //     }
 
-            // if(arrayIconoCasilla[0] != arrayIconoCasilla[1]){
+        //     // if(arrayIconoCasilla[0] != arrayIconoCasilla[1]){
 
-            // }
-        }
+        //     // }
+        // }
     }
 }
 
