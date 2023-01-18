@@ -147,7 +147,8 @@ class Memorin extends Tablero {
 
                 this.despejar = this.despejar.bind(this);
 
-                celda.addEventListener('click', this.despejar);             
+                celda.addEventListener('click', this.despejar);
+                // celda.addEventListener('click', this.taparCelda);          
             }
         }
         console.log(this.arrayTablero);
@@ -159,7 +160,6 @@ class Memorin extends Tablero {
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
-        this.esPareja();
     }
 
     //Se despeja la celda y se muestra el icono
@@ -172,6 +172,8 @@ class Memorin extends Tablero {
         celda.innerHTML = valorCasilla;
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
+
+        celda.removeEventListener('click', this.despejar);
     }
 
     esPareja(){
@@ -183,6 +185,26 @@ class Memorin extends Tablero {
             }
         }
     }
+
+    // noSonPareja(){//llamar a taparCelda
+    //     if(this.arrayIconoCasilla.length == 2){
+    //         if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
+    //             this.arrayIconoCasilla[0].style.backgroundColor  = 'red';
+    //             this.arrayIconoCasilla[1].style.backgroundColor  = 'red';
+    //         }
+    //     }
+
+    // }
+
+    // taparCelda(elEvento){
+    //     let evento = elEvento || window.event;
+    //     let celda = evento.currentTarget;
+
+    //     if(this.arrayIconoCasilla[0].style.backgroundColor  == 'red' && this.arrayIconoCasilla[1].style.backgroundColor  == 'red'){
+    //         this.arrayIconoCasilla[0] = "";
+    //         this.arrayIconoCasilla[1] = "";
+    //     }
+    // }
 
 }
 
