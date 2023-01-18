@@ -147,7 +147,7 @@ class Memorin extends Tablero {
 
                 this.despejar = this.despejar.bind(this);
 
-                celda.addEventListener('click', this.despejar);                
+                celda.addEventListener('click', this.despejar);             
             }
         }
         console.log(this.arrayTablero);
@@ -159,7 +159,7 @@ class Memorin extends Tablero {
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
-        this.esPareja(celda);
+        this.esPareja();
     }
 
     //Se despeja la celda y se muestra el icono
@@ -170,21 +170,20 @@ class Memorin extends Tablero {
         let valorCasilla = this.arrayTablero[fila][columna];
 
         celda.innerHTML = valorCasilla;
-        let idCelda = celda.id;
-        //Guardamos el icono de cada Casilla dentro de un array.
-        //Guardar en el array la posición de celda también.
-        this.arrayIconoCasilla.push(valorCasilla, idCelda);
+        //Se guarda la celda en un array cada vez que se hace click.
+        this.arrayIconoCasilla.push(celda);
     }
 
-    esPareja(celda){
+    esPareja(){
         //Comprobamos si el arrayIconoCasilla tiene dos posiciones y si estas dos son iguales.
-        //Comprobar si recibe el valor del icono y la posición de la celda.
         if(this.arrayIconoCasilla.length == 2){
-            if(this.arrayIconoCasilla[0] == this.arrayIconoCasilla[1]){
-                celda.style.backgroundColor  = 'green';
+            if(this.arrayIconoCasilla[0].innerHTML == this.arrayIconoCasilla[1].innerHTML){
+                this.arrayIconoCasilla[0].style.backgroundColor  = 'rgb(175, 255, 110)';
+                this.arrayIconoCasilla[1].style.backgroundColor  = 'rgb(175, 255, 110)';
             }
         }
     }
+
 }
 
 //Se pide el número de filas y de columnas al usuario.
