@@ -160,6 +160,7 @@ class Memorin extends Tablero {
 
         this.despejarCelda(celda);
         this.esPareja();
+        this.noSonPareja();
     }
 
     //Se despeja la celda y se muestra el icono
@@ -173,7 +174,7 @@ class Memorin extends Tablero {
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
 
-        celda.removeEventListener('click', this.despejar);
+        celda.removeEventListener('click', this.despejar);//CAMBIAR A BOTÓN DERECHO
     }
 
     esPareja(){
@@ -182,6 +183,7 @@ class Memorin extends Tablero {
             if(this.arrayIconoCasilla[0].innerHTML == this.arrayIconoCasilla[1].innerHTML){
                 this.arrayIconoCasilla[0].style.backgroundColor  = 'rgb(175, 255, 110)';
                 this.arrayIconoCasilla[1].style.backgroundColor  = 'rgb(175, 255, 110)';
+                this.arrayIconoCasilla = [];
             }
         }
     }
@@ -192,10 +194,13 @@ class Memorin extends Tablero {
     //         if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
     //             this.arrayIconoCasilla[0].style.backgroundColor  = 'red';
     //             this.arrayIconoCasilla[1].style.backgroundColor  = 'red';
+    //             this.arrayIconoCasilla = [];
     //         }
     //     }
 
     // }
+
+    //this.arrayIconoCasilla[1].innerHTML  = '';
 
     // taparCelda(elEvento){
     //     let evento = elEvento || window.event;
