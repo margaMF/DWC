@@ -147,8 +147,7 @@ class Memorin extends Tablero {
 
                 this.despejar = this.despejar.bind(this);
 
-                celda.addEventListener('click', this.despejar);
-                // celda.addEventListener('click', this.taparCelda);          
+                celda.addEventListener('click', this.despejar);         
             }
         }
         console.log(this.arrayTablero);
@@ -160,6 +159,7 @@ class Memorin extends Tablero {
         let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
+        this.esPareja();
     }
 
     //Se despeja la celda y se muestra el icono
@@ -186,6 +186,7 @@ class Memorin extends Tablero {
         }
     }
 
+    //Sino, al conseguir quitar el evento en esparjea(), volver a añadirlo cuando no son pareja y que sea igual a vacio.
     // noSonPareja(){//llamar a taparCelda
     //     if(this.arrayIconoCasilla.length == 2){
     //         if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
