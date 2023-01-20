@@ -148,7 +148,7 @@ class Memorin extends Tablero {
 
                 this.despejar = this.despejar.bind(this);
 
-                celda.addEventListener('click', this.despejar);         
+                celda.addEventListener('contextmenu', this.despejar);         
             }
         }
         console.log(this.arrayTablero);
@@ -180,7 +180,7 @@ class Memorin extends Tablero {
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
 
-        celda.removeEventListener('click', this.despejar);//CAMBIAR A BOTÓN DERECHO
+        celda.removeEventListener('contextmenu', this.despejar);//CAMBIAR A BOTÓN DERECHO
     }
 
     esPareja(){
