@@ -152,6 +152,11 @@ class Memorin extends Tablero {
             }
         }
         console.log(this.arrayTablero);
+
+        let recargar = document.getElementById('recargar');
+        recargar.addEventListener('click', _ => {
+            location.reload();
+        })
     }
 
     //Se captura el evento y el nodo que lo genera
