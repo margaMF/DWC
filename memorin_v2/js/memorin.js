@@ -60,7 +60,8 @@ class Tablero {
                 columna.dataset.columna = j;
                 fila.appendChild(columna);
 
-                
+                let nodoIconos = document.createElement('p');
+                columna.appendChild(nodoIconos);
             }
         }
         document.body.appendChild(tabla)
@@ -170,7 +171,7 @@ class Memorin extends Tablero {
         
         let valorCasilla = this.arrayTablero[fila][columna];
 
-        celda.innerHTML = valorCasilla;
+        celda.firstChild.innerHTML = valorCasilla;
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
 
@@ -188,30 +189,18 @@ class Memorin extends Tablero {
         }
     }
 
-    //Sino, al conseguir quitar el evento en esparjea(), volver a añadirlo cuando no son pareja y que sea igual a vacio.
-    // noSonPareja(){//llamar a taparCelda
-    //     if(this.arrayIconoCasilla.length == 2){
-    //         if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
-    //             this.arrayIconoCasilla[0].style.backgroundColor  = 'red';
-    //             this.arrayIconoCasilla[1].style.backgroundColor  = 'red';
-    //             this.arrayIconoCasilla = [];
-    //         }
-    //     }
+    noSonPareja(){
+        if(this.arrayIconoCasilla.length == 2){
+            if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
+                this.arrayIconoCasilla[0].style.backgroundColor  = 'red';
+                this.arrayIconoCasilla[1].style.backgroundColor  = 'red';
+                this.arrayIconoCasilla = [];
+            }
+        }
 
-    // }
+    }
 
     //this.arrayIconoCasilla[1].innerHTML  = '';
-
-    // taparCelda(elEvento){
-    //     let evento = elEvento || window.event;
-    //     let celda = evento.currentTarget;
-
-    //     if(this.arrayIconoCasilla[0].style.backgroundColor  == 'red' && this.arrayIconoCasilla[1].style.backgroundColor  == 'red'){
-    //         this.arrayIconoCasilla[0] = "";
-    //         this.arrayIconoCasilla[1] = "";
-    //     }
-    // }
-
 }
 
 //Se pide el número de filas y de columnas al usuario.

@@ -1,4 +1,4 @@
-*{
+body{
     background-color: rgb(156, 147, 252);
 }
 table{
@@ -32,7 +32,6 @@ h1{
 
 p{
     font-size: 30px;
-    background-color:rgb(233, 231, 255);
     text-shadow: 5px 5px 5px grey;
 }
 
