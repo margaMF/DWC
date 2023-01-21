@@ -170,6 +170,11 @@ class Memorin extends Tablero {
 
     //Se despeja la celda y se muestra el icono
     despejarCelda(celda){
+        //Se desactiva el menú del botón derecho
+        window.oncontextmenu = (() => {
+            return false;
+        });
+
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
         
