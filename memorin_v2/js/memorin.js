@@ -166,7 +166,6 @@ class Memorin extends Tablero {
 
         this.despejarCelda(celda);
         this.esPareja();
-        this.noSonPareja();
     }
 
     //Se despeja la celda y se muestra el icono
@@ -176,36 +175,39 @@ class Memorin extends Tablero {
         
         let valorCasilla = this.arrayTablero[fila][columna];
 
-        celda.firstChild.innerHTML = valorCasilla;
+        // celda.firstChild.innerHTML = valorCasilla;NO FUNCIONA!!!!!COMPROBAR ESTILOS
+        celda.innerHTML = valorCasilla;
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
 
-        celda.removeEventListener('contextmenu', this.despejar);//CAMBIAR A BOTÓN DERECHO
+        // celda.removeEventListener('contextmenu', this.despejar); NO FUNCIONA!!!!!!!
     }
 
     esPareja(){
-        //Comprobamos si el arrayIconoCasilla tiene dos posiciones y si estas dos son iguales.
+        //Comprobamos si el arrayIconoCasilla tiene dos posiciones.
         if(this.arrayIconoCasilla.length == 2){
+            //Si las dos celdas son iguales las ponemos en color verde sino las volvemos a girar.
             if(this.arrayIconoCasilla[0].innerHTML == this.arrayIconoCasilla[1].innerHTML){
-                this.arrayIconoCasilla[0].style.backgroundColor  = 'rgb(175, 255, 110)';
-                this.arrayIconoCasilla[1].style.backgroundColor  = 'rgb(175, 255, 110)';
-                this.arrayIconoCasilla = [];
+                setTimeout(() => {
+
+                    this.arrayIconoCasilla[0].style.backgroundColor  = 'rgb(175, 255, 110)';
+                    this.arrayIconoCasilla[1].style.backgroundColor  = 'rgb(175, 255, 110)';
+                    this.arrayIconoCasilla = [];
+
+                    //TAMPOCO FUNCIONA
+                    // this.arrayIconoCasilla[0].style.pointerEvents = 'none';
+                    // this.arrayIconoCasilla[1].style.pointerEvents = 'none';
+
+                }, "500");
+            }else{
+                setTimeout(() => {
+                    this.arrayIconoCasilla[0].innerHTML  = '';
+                    this.arrayIconoCasilla[1].innerHTML  = '';
+                    this.arrayIconoCasilla = [];
+                }, "900");
             }
         }
     }
-
-    noSonPareja(){
-        if(this.arrayIconoCasilla.length == 2){
-            if(this.arrayIconoCasilla[0].innerHTML != this.arrayIconoCasilla[1].innerHTML){
-                this.arrayIconoCasilla[0].style.backgroundColor  = 'red';
-                this.arrayIconoCasilla[1].style.backgroundColor  = 'red';
-                this.arrayIconoCasilla = [];
-            }
-        }
-
-    }
-
-    //this.arrayIconoCasilla[1].innerHTML  = '';
 }
 
 //Se pide el número de filas y de columnas al usuario.
