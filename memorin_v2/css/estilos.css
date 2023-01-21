@@ -13,6 +13,8 @@ tr, td{
     border: 4px solid rgb(95, 81, 244);
     background-color: rgb(233, 231, 255);
     border-radius: 10px;
+    font-size: 30px;
+    text-shadow: 5px 5px 5px grey;
 }
 
 td {
@@ -28,11 +30,6 @@ h1{
     color: rgb(251, 251, 255);
     margin: 0px 0px;
     text-shadow: -3px -3px 1px rgb(65, 65, 253), 3px 3px 1px rgb(65, 65, 253), -3px 3px 1px rgb(65, 65, 253), 3px -3px 1px rgb(65, 65, 253);
-}
-
-p{
-    font-size: 30px;
-    text-shadow: 5px 5px 5px grey;
 }
 
 h2{

@@ -59,9 +59,6 @@ class Tablero {
                 columna.dataset.fila = i;
                 columna.dataset.columna = j;
                 fila.appendChild(columna);
-
-                let nodoIconos = document.createElement('p');
-                columna.appendChild(nodoIconos);
             }
         }
         document.body.appendChild(tabla)
@@ -153,6 +150,7 @@ class Memorin extends Tablero {
         }
         console.log(this.arrayTablero);
 
+        //Botón para recargar la página.
         let recargar = document.getElementById('recargar');
         recargar.addEventListener('click', _ => {
             location.reload();
@@ -180,7 +178,6 @@ class Memorin extends Tablero {
         
         let valorCasilla = this.arrayTablero[fila][columna];
 
-        // celda.firstChild.innerHTML = valorCasilla;NO FUNCIONA!!!!!COMPROBAR ESTILOS
         celda.innerHTML = valorCasilla;
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
@@ -203,7 +200,7 @@ class Memorin extends Tablero {
                     // this.arrayIconoCasilla[0].style.pointerEvents = 'none';
                     // this.arrayIconoCasilla[1].style.pointerEvents = 'none';
 
-                }, "500");
+                }, "350");
             }else{
                 setTimeout(() => {
                     this.arrayIconoCasilla[0].innerHTML  = '';
