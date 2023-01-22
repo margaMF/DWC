@@ -153,7 +153,10 @@ class Memorin extends Tablero {
         //Botón para recargar la página.
         let recargar = document.getElementById('recargar');
         recargar.addEventListener('click', _ => {
-            location.reload();
+            let pregunta = window.confirm("¿Seguro que quieres reiniciar el juego?");
+            if(pregunta == true){
+                location.reload();
+            }
         })
     }
 
