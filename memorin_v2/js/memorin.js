@@ -5,6 +5,7 @@ class Tablero {
         this.filas = filas;
         this.columnas = columnas;
         this.iconos = ["&#128520;", "&#129313;", "&#129312;", "&#128519;", "&#128125;", "&#128123;", "&#128126;", "&#128373;", "&#128585;", "&#129302;"];
+        this.totalCasillas = this.filas * this.columnas
 
         this.crearTablero();
     }
@@ -70,6 +71,9 @@ class Memorin extends Tablero {
 
     constructor(filas, columnas, iconos) {
         super(filas, columnas, iconos);
+
+        this.aciertos = 0;
+        this.totalParejas = this.totalCasillas / 2;
 
         this.colocarIconos();
     }
@@ -198,6 +202,8 @@ class Memorin extends Tablero {
                     this.arrayIconoCasilla[0].style.backgroundColor  = 'rgb(175, 255, 110)';
                     this.arrayIconoCasilla[1].style.backgroundColor  = 'rgb(175, 255, 110)';
                     this.arrayIconoCasilla = [];
+                    this.aciertos++;
+                    this.felicitacion();
 
                     //TAMPOCO FUNCIONA
                     // this.arrayIconoCasilla[0].style.pointerEvents = 'none';
@@ -211,6 +217,12 @@ class Memorin extends Tablero {
                     this.arrayIconoCasilla = [];
                 }, "900");
             }
+        }
+    }
+
+    felicitacion(){
+        if(this.aciertos == this.totalParejas){
+            alert('¡Enhorabuena, has ganado!')
         }
     }
 }
