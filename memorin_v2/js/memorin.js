@@ -189,7 +189,7 @@ class Memorin extends Tablero {
         //Se guarda la celda en un array cada vez que se hace click.
         this.arrayIconoCasilla.push(celda);
 
-        // celda.removeEventListener('contextmenu', this.despejar); NO FUNCIONA!!!!!!!
+        // celda.removeEventListener('contextmenu', this.despejar); Lo miramos en clase pero no llegó ha funcionar.
     }
 
     esPareja(){
@@ -205,7 +205,7 @@ class Memorin extends Tablero {
                     this.aciertos++;
                     this.felicitacion();
 
-                    //TAMPOCO FUNCIONA
+                    //Esta opción tampoco funciona.
                     // this.arrayIconoCasilla[0].style.pointerEvents = 'none';
                     // this.arrayIconoCasilla[1].style.pointerEvents = 'none';
 

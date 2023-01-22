@@ -6,6 +6,24 @@ con la cantidad de casillas indicadas por el usuario y dentro de ellas aparecera
 respectivas parejas colocadas de forma aleatoria.
 
 
-Indicaciones:
-    -El número total de casillas debe ser un número par si no es así se volvera a preguntar hasta que se 
-    introduzca un número par.
+Instrucciones del juego:
+	
+	-Se preguntará al usuario el número de filas y columnas con las que quiere jugar.
+	-El número total de estas debe ser par, si no es así se volvera a preguntar hasta que se 
+	introduzca un número par.
+	-El usuario girará dos casillas cada vez.
+	-Si las dos casillas son iguales se habrá conseguido una pareja correcta y se sumará a los
+	puntos.
+	-Si por el contrario son distintas, se girarán esas dos casillas y se deberán elegir otras
+	dos.
+	-La finalidad es recordar en que casilla estaba cada icono para así poder conseguir todas
+	las parejas.
+	-El juego finaliza cuando se ha conseguido seleccionar todas las parejas correctamente.
+	-El juego también cuenta con un botón para recargar el tablero si se desea volver a 
+	empezar de nuevo la partida.
+
+Navegadores utilizados para las comprobaciones:
+	
+	-Google chrome.
+	-Microsoft edge.
+	
