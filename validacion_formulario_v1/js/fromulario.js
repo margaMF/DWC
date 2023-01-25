@@ -18,6 +18,14 @@ function validarEmail(){
     }
 }
 
+//Función para validar varios patrones
+function validarDatos(){
+    let patrones = new Map();
+
+   patrones.set("nombre", /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ]{2,}$/);
+   console.log(patrones);
+}
+
 window.addEventListener('load', function(){
     let nombre = document.getElementById('nombre');
     let apellidos = document.getElementById('apellidos');
