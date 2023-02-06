@@ -30,14 +30,12 @@ function validarDatos(){
    patrones.set("fecha", /^([0][1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/);
    patrones.set("codigoPostal", /^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/);
    patrones.set("tiempo", /^([0-1][0-9]|2[0-3])(:([0-5][0-9])){2}$/);
-//    patrones.set("tarjeta", /^4[0-9]{12}|[0-9]{15}
-//    |5[1-5][0-9]{14}|
-//    6011[0-9]{12}|5[0-9]{14}|
-//    34|37[0-9]{13}|
-//    30[0-5][0-9]{11}|36|38[0-9]{12}        
-//      REVISAR LOS DOS ULTIMOS
-//    |2131[0-9]{15}|1800[0-9]{15}
-//    |35{16}$/);
+  
+   let patronVisa = /^4([0-9]{12}|[0-9]{15})$/;
+   let patronMasterCard = /^5[1-5][0-9]{14}$/;
+   let patronDiscover = /^6011[0-9]{12}|5[0-9]{14}$/;
+   let patronAmericanExpress = /^(34|37)[0-9]{13}$/;
+   let patronDinersClub = /^(30[0-5][0-9]{11}|(36|38)[0-9]{12})$/;
 
    this.className = "";
 
