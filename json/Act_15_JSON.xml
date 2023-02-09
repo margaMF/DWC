@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding ="UTF-8"?>
+
+<Contenedores>
+    <contenedor tipo="grande">
+        <envase tipo="grandeAncho">
+            <liquido tipo="alimento">Agua</liquido>
+            <liquido tipo="alimento">Leche</liquido>
+            <liquido tipo="alimento">Aceite</liquido>
+            <liquido tipo="alimento">Vinagre</liquido>
+        </envase>
+
+        <envase tipo="grandeAlto">
+            <liquido tipo="alimento">Agua</liquido>
+            <liquido tipo="alimento">Leche</liquido>
+            <liquido tipo="alimento">Aceite</liquido>
+            <liquido tipo="alimento">Vinagre</liquido>
+        </envase>
+    </contenedor>
+
+    <contenedor tipo="mediano">
+        <envase tipo="medianoAncho">
+            <liquido tipo="alimento">Agua</liquido>
+            <liquido tipo="alimento">Leche</liquido>
+            <liquido tipo="alimento">Aceite</liquido>
+            <liquido tipo="alimento">Vinagre</liquido>
+        </envase>
+
+        <envase tipo="medianoAlto">
+            <liquido tipo="corrosivo">Lejía</liquido>
+            <liquido tipo="corrosivo">Amoniaco</liquido>
+            <liquido tipo="corrosivo">Gasolina</liquido>
+            <liquido tipo="corrosivo">Aguarrás</liquido>
+            <liquido tipo="corrosivo">Alcohol</liquido>
+            <liquido tipo="corrosivo">Jabón</liquido>
+        </envase>
+
+        <envase tipo="pequeño">
+            <liquido tipo="corrosivo">Lejía</liquido>
+            <liquido tipo="corrosivo">Amoniaco</liquido>
+            <liquido tipo="corrosivo">Gasolina</liquido>
+            <liquido tipo="corrosivo">Aguarras</liquido>
+            <liquido tipo="corrosivo">Alcohol</liquido>
+            <liquido tipo="corrosivo">Jabón</liquido>
+        </envase>
+    </contenedor>
+
+    <contenedor tipo="vertical">
+        <envase tipo="medianoAlto">
+            <liquido tipo="corrosivo">Lejía</liquido>
+            <liquido tipo="corrosivo">Amoniaco</liquido>
+            <liquido tipo="corrosivo">Gasolina</liquido>
+            <liquido tipo="corrosivo">Aguarras</liquido>
+            <liquido tipo="corrosivo">Alcohol</liquido>
+            <liquido tipo="corrosivo">Jabón</liquido>
+        </envase>
+
+        <envase tipo="grandeAlto">
+            <liquido tipo="alimento">Agua</liquido>
+            <liquido tipo="alimento">Leche</liquido>
+            <liquido tipo="alimento">Aceite</liquido>
+            <liquido tipo="alimento">Vinagre</liquido>
+        </envase>
+    </contenedor>
+</Contenedores>
+
