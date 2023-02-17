@@ -5,8 +5,9 @@ const registroPacientes = new Map([
     [`YUN835`,`Benítez E. (154811767) -> Av.Argentina, 5`]
 ]);
 
-let i = 0;
 
+let i = 0;
+let mapaNuevo = new Map();
 
 registroPacientes.forEach (function(valor, clave) {
     let numeroRegistro = clave;
@@ -18,9 +19,39 @@ registroPacientes.forEach (function(valor, clave) {
 
     let valorCompleto = `numeroRegistro: ${numeroRegistro}, nombreCompleto: ${nombreCompleto}, numeroSS: ${numeroSS}, direccion: ${direccion}`;
 
-    let mapaNuevo = new Map();
     mapaNuevo.set(`Paciente ${i}`, valorCompleto);
 });
+
+for (let [clave, valor] of registroPacientes){
+    let numeroRegistro = clave;
+    i++
+
+    let direccion = valor.split(') -> ')[1];
+    let nombreCompleto = valor.split(') -> ')[0].split(' (')[0];
+    let numeroSS = valor.split(') -> ')[0].split(' (')[1];
+
+    let valorCompleto = `numeroRegistro: ${numeroRegistro}, nombreCompleto: ${nombreCompleto}, numeroSS: ${numeroSS}, direccion: ${direccion}`;
+
+    mapaNuevo.set(`Paciente ${i}`, valorCompleto);
+}
+
+function crearMapaNuevo(mapa){
+    let i = 0;
+    let mapaNuevo = new Map();
+
+    for (let [clave, valor] of mapa){
+        let numeroRegistro = clave;
+        i++
+    
+        let direccion = valor.split(') -> ')[1];
+        let nombreCompleto = valor.split(') -> ')[0].split(' (')[0];
+        let numeroSS = valor.split(') -> ')[0].split(' (')[1];
+    
+        let valorCompleto = `numeroRegistro: ${numeroRegistro}, nombreCompleto: ${nombreCompleto}, numeroSS: ${numeroSS}, direccion: ${direccion}`;
+    
+        mapaNuevo.set(`Paciente ${i}`, valorCompleto);
+    }
+}
 
 console.log(mapaNuevo);
 

@@ -1,0 +1,17 @@
+div{
+    border: 2px solid grey;
+    width: 400px;
+    padding: 20px;
+}
+
+.nombre{
+    text-align: center;
+}
+
+.titulo{
+    text-align: left;
+}
+
+h1{
+    text-align: center;
+}
